@@ -51,6 +51,9 @@ public class FlappyBird extends ApplicationAdapter {
 
     public void flap() {
         bird.velocityY += 800;
+        if(bird.velocityY > 450){
+            bird.velocityY = 450;
+        }
     }
 
     public void die() {
