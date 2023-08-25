@@ -8,8 +8,10 @@ import com.ratlab.topdownryan.TopDownRyan;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+		config.useVsync(true);
 		config.setForegroundFPS(60);
 		config.setTitle("Top Down Ryan");
+		config.setWindowedMode(GameVariables.screenWidth, GameVariables.screenHeight);
 		new Lwjgl3Application(new TopDownRyan(), config);
 	}
 }
