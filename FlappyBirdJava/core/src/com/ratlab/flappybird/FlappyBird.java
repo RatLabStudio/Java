@@ -50,7 +50,10 @@ public class FlappyBird extends ApplicationAdapter {
     }
 
     public void flap() {
-        bird.velocityY += 800;
+        int cap = 450;
+        if(bird.velocityY > bird.velocityY - cap)
+            bird.velocityY = cap;
+        else bird.velocityY += cap;
     }
 
     public void die() {
