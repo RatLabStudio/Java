@@ -13,20 +13,31 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class TopDownRyan extends ApplicationAdapter {
 	SpriteBatch batch;
-	private Rectangle nerd;
+	private GameObject nerd;
+	private GameObject coolGuy;
 	Texture nerdImg;
-	
+	Texture coolGuyImg;
+	private float scaling = 1;
+
+	private boolean canMoveX;
+	private boolean canMoveY;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		nerdImg = new Texture("Nerd.png");
+		coolGuyImg = new Texture("cool.png");
 
-		nerd = new Rectangle();
-		nerd.x = 400;
-		nerd.y = 400;
-		nerd.width = 100;
-		nerd.height = 100;
+		nerd = new GameObject(400, 400, 100, 100, scaling);
+
+		nerd = new GameObject(400, 400, 100, 100, scaling);
+
 		//font.setColor(Color.WHITE);
+	}
+
+	public void coliding(){
+		nerd.x = nerd.x - 1;
+		nerd.y = nerd.y -1;
 	}
 
 	@Override
@@ -36,22 +47,35 @@ public class TopDownRyan extends ApplicationAdapter {
 		if (Gdx.input.isKeyPressed(Input.Keys.W)){
 			nerd.y += 5;
 		}
-
 		if (Gdx.input.isKeyPressed(Input.Keys.A)){
 			nerd.x -= 5;
 		}
-
 		if (Gdx.input.isKeyPressed(Input.Keys.S)){
 			nerd.y -= 5;
 		}
-
 		if (Gdx.input.isKeyPressed(Input.Keys.D)){
 			nerd.x += 5;
 		}
 
 
-		batch.begin();
-		batch.draw(nerdImg, nerd.x, nerd.y);
+		if (Gdx.input.isKeyPressed(Input.Keys.UP)){
+			coolGuy.y += 5;
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+			coolGuy.x -= 5;
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+			coolGuy.y -= 5;
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+			coolGuy.x += 5;
+		}
+
+
+		batch.begin();//fix make shorter
+		batch.draw(nerdImg, nerd.x, nerd.y, nerd.width / 2f, nerd.height / 2f, nerd.width, nerd.height, scaling, scaling, 0, 0, 0, nerdImg.getWidth(), nerdImg.getHeight(), false, false);
+
+		batch.draw(coolGuyImg, coolGuy.x, coolGuy.y);
 		batch.end();
 	}
 	
@@ -59,5 +83,6 @@ public class TopDownRyan extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		nerdImg.dispose();
+		coolGuyImg.dispose();
 	}
 }

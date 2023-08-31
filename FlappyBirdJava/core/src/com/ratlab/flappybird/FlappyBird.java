@@ -101,7 +101,7 @@ public class FlappyBird extends ApplicationAdapter {
 
         bird.update();
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.W)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.W)  || Gdx.input.isTouched()) {
             flap();
             bird.rotation = 30f;
         }
