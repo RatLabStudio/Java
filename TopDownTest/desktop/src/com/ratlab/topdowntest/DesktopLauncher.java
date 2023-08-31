@@ -9,8 +9,10 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
+		config.useVsync(true);
 
 		config.setTitle("TopDownTest - Rat Lab");
+		config.setWindowedMode(World.screenWidth, World.screenHeight);
 		new Lwjgl3Application(new TopDownTest(), config);
 	}
 }

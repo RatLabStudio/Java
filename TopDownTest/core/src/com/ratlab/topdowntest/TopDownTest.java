@@ -19,11 +19,13 @@ public class TopDownTest extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		World.objs = new Array<GameObject>();
 
-		ratTexture = new Texture("bird.png");
-		rat = new GameObject(20, 20, 68, 48, ratTexture);
-		npc = new GameObject(50, 50, 68, 48, ratTexture);
+		ratTexture = new Texture("rat.png");
+		rat = new GameObject(20, 20, 64, 64, ratTexture);
+		npc = new GameObject(200, 200, 64, 64, ratTexture);
 		World.objs.add(rat);
 		World.objs.add(npc);
+		npc.applyForce("horizontal", 10);
+		//World.objs.get(1).applyForce("horizontal", 10);
 	}
 
 	@Override
@@ -46,6 +48,9 @@ public class TopDownTest extends ApplicationAdapter {
 		for (GameObject obj : World.objs)
 			batch.draw(obj.texture, obj.x, obj.y, obj.width, obj.height);
 		batch.end();
+
+		for (GameObject obj : World.objs)
+			obj.update();
 	}
 	
 	@Override
